@@ -78,8 +78,12 @@ class SchemaEditAction extends \FormAction {
 		 * @var $content WikibaseSchemaContent
 		 */
 		$content = $this->getContext()->getWikiPage()->getContent();
-
-		$content->setNativeData( json_encode( $this->formDataToSchemaArray( $data ) ) );
+		$dataToSave = json_encode( $this->formDataToSchemaArray( $data ) );
+		if ( $content ) {
+			$content->setNativeData( $dataToSave );
+		} else {
+			$content = new WikibaseSchemaContent( $dataToSave );
+		}
 
 		$updater = $this->page->getPage()->newPageUpdater( $this->context->getUser() );
 		$updater->setContent( 'main', $content );
