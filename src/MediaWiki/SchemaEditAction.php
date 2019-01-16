@@ -30,7 +30,18 @@ class SchemaEditAction extends \FormAction {
 
 	protected function getFormFields() {
 
-		$schema = json_decode( $this->getContext()->getWikiPage()->getContent()->getNativeData(), true );
+		$content = $this->getContext()->getWikiPage()->getContent();
+		if ( $content ) { //FIXME: handle this better
+
+			$schema = json_decode( $content->getNativeData(), true );
+		} else {
+			$schema = [
+				'description' => [
+					'en' => '',
+				],
+				'schema' => '',
+			];
+		}
 //		var_dump($schema);
 //		exit;
 
@@ -81,9 +92,9 @@ class SchemaEditAction extends \FormAction {
 
 	private function formDataToSchemaArray( array $formData ) {
 		return [
-			'schema' => $formData['schema'],
+			'schema' => $formData[ 'schema' ],
 			'description' => [
-				'en' => $formData['description'],
+				'en' => $formData[ 'description' ],
 			],
 		];
 	}
