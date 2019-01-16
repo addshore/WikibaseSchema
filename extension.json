@@ -1,26 +1,47 @@
 {
-	"name": "WikibaseSchema",
-	"version": "0.0.0",
-	"author": [
-		"The Wikidata team"
-	],
-	"url": "https://www.mediawiki.org/wiki/Extension:WikibaseSchema",
-	"descriptionmsg": "wikibaseschema-desc",
-	"license-name": "GPL-2.0-or-later",
-	"type": "wikibase",
-	"requires": {
-		"MediaWiki": ">= 1.32.0"
+  "name": "WikibaseSchema",
+  "version": "0.0.0",
+  "author": [
+	"The Wikidata team"
+  ],
+  "url": "https://www.mediawiki.org/wiki/Extension:WikibaseSchema",
+  "descriptionmsg": "wikibaseschema-desc",
+  "license-name": "GPL-2.0-or-later",
+  "type": "wikibase",
+  "requires": {
+	"MediaWiki": ">= 1.32.0"
+  },
+  "AutoloadNamespaces": {
+	"Wikibase\\Schema": "src/"
+  },
+  "ExtensionMessagesFiles": {
+	"WikibaseSchemaAlias": "WikibaseSchema.i18n.alias.php"
+  },
+  "MessagesDirs": {
+	"WikibaseSchema": [
+	  "i18n"
+	]
+  },
+  "ContentHandlers": {
+		"WikibaseSchema": "Wikibase\\Schema\\MediaWiki\\Content\\WikibaseSchemaContentHandler"
 	},
-	"AutoloadNamespaces": {
-		"Wikibase\\Schema": "src/"
+  "namespaces": [
+	{
+	  "id": 12300,
+	  "constant": "NS_WBSCHEMA_JSON",
+	  "name": "Schema",
+	  "subpages": false,
+	  "content": true,
+	  "defaultcontentmodel": "WikibaseSchema"
 	},
-	"ExtensionMessagesFiles": {
-		"WikibaseSchemaAlias": "WikibaseSchema.i18n.alias.php"
-	},
-	"MessagesDirs": {
-		"WikibaseSchema": [
-			"i18n"
-		]
-	},
-	"manifest_version": 2
+	{
+	  "id": 12301,
+	  "constant": "NS_WBSCHEMA_JSON_TALK",
+	  "name": "Schema_talk",
+	  "subpages": true,
+	  "content": false,
+	  "defaultcontentmodel": "wikitext"
+	}
+  ],
+  "manifest_version": 2
 }
