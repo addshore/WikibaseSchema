@@ -3,36 +3,15 @@
 namespace Wikibase\Schema\MediaWiki;
 
 use CommentStoreComment;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\PageUpdater;
 use Wikibase\Schema\MediaWiki\Content\WikibaseSchemaContent;
 
 class SchemaEditAction extends \FormAction {
-//	public function show() {
-//		$this->useTransactionalTimeLimit();
-//
-//		$out = $this->getOutput();
-//		$out->setRobotPolicy( 'noindex,nofollow' );
-//		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-//			$out->addModuleStyles( [
-//				'mediawiki.ui.input',
-//				'mediawiki.ui.checkbox',
-//			] );
-//		}
-//		$page = $this->page;
-//		$user = $this->getUser();
-//
-//		$editPage = new SchemaEditPage( $page );
-//		$editPage->setContextTitle( $this->getTitle() );
-//		$editPage->edit();
-//	}
-
 
 	protected function getFormFields() {
 
 		$content = $this->getContext()->getWikiPage()->getContent();
-		if ( $content ) { //FIXME: handle this better
-
+		if ( $content ) {
+			// FIXME: handle this better
 			$schema = json_decode( $content->getNativeData(), true );
 		} else {
 			$schema = [
@@ -42,8 +21,6 @@ class SchemaEditAction extends \FormAction {
 				'schema' => '',
 			];
 		}
-//		var_dump($schema);
-//		exit;
 
 		return [
 			'description' => [
@@ -56,7 +33,6 @@ class SchemaEditAction extends \FormAction {
 			],
 		];
 	}
-
 
 	/**
 	 * Process the form on POST submission.
@@ -123,4 +99,5 @@ class SchemaEditAction extends \FormAction {
 	public function getName() {
 		return 'edit';
 	}
+
 }

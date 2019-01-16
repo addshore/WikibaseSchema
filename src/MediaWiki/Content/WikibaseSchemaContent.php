@@ -34,8 +34,7 @@ class WikibaseSchemaContent extends \JsonContent {
 	}
 
 	private function schemaJsonToHtml( array $schema ) {
-		return
-			Html::element(
+		return Html::element(
 				'h3',
 				[],
 				$schema['description']['en']

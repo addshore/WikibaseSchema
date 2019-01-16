@@ -19,7 +19,6 @@ class WikibaseSchemaContentHandler extends \JsonContentHandler {
 		return [
 			'edit' => SchemaEditAction::class,
 			'submit' => SchemaSubmitAction::class
-//			'submit' => SchemaEditAction::class
 		];
 	}
 
